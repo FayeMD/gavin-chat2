@@ -24,6 +24,14 @@
 		$('#newMsg').val('');
 		return false;
 	});
+	socket.on('chat message', function(msg){
+		$('#msgs').append($('<li>').text(msg));
+	});
+
+	socket.on('history', function(msg){
+		$('#msgs').append($('<div>').text(msg));
+	});
+	
 </script>
 </body>
 </html>
