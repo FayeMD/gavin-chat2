@@ -19,9 +19,15 @@ io.on('connection', function(socket){
 	client.get('app name', function(err, reply){
 		console.log('app name is', reply);
 	});
-	client.get('last message', function(err, reply) {
-		console.log('last message', reply);
-		socket.emit('history', reply);
+	client.hkeys('history', function(err, replies) {
+		console.log('history', replies);
+		replies.forEach(function(reply, i) {
+			console.log("   " + i + reply, reply[i]);
+			client.hget('history', reply, function(err, msg) {
+				console.log('msg', msg);
+				socket.emit('history', msg);
+			});	
+		});
 	});
 	console.log('a user connected');
 	socket.on('disconnect', function(){
@@ -30,6 +36,11 @@ io.on('connection', function(socket){
 	socket.on('chat message', function(msg){ //listening for event
 		console.log('message: ' + msg);
 		socket.broadcast.emit('chat message', msg);
+		client.incr('msg_id', function(err, msg_id) {
+			console.log('msg_id', msg_id);
+			client.hset('history', msg_id, msg);
+		});
+		//client.hset("history", "hashtest 1", "some value")
 		client.set('last message', msg);
 	});
 });
