@@ -28,10 +28,15 @@
 		$('#msgs').append($('<li>').text(msg));
 	});
 
-	socket.on('history', function(msg){
-		$('#msgs').append($('<div>').text(msg));
+	socket.on('history', function(replies){
+		for (var i in replies) {
+			console.log("   " + i + ": " + replies[i]);
+			var msg = replies[i];
+			//socket.emit('history', msg);
+			$('#msgs').append($('<div>').text(msg));
+		};
 	});
-	
+
 </script>
 </body>
 </html>

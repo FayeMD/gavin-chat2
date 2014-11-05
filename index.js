@@ -19,6 +19,11 @@ io.on('connection', function(socket){
 	client.get('app name', function(err, reply){
 		console.log('app name is', reply);
 	});
+	client.hgetall('history', function(err, replies) {
+		console.log('history', replies);
+		socket.emit('history', replies);
+	});
+		/*
 	client.hkeys('history', function(err, replies) {
 		console.log('history', replies);
 		replies.forEach(function(reply, i) {
@@ -29,6 +34,7 @@ io.on('connection', function(socket){
 			});	
 		});
 	});
+*/
 	console.log('a user connected');
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
