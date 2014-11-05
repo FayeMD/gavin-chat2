@@ -6,14 +6,24 @@
 <div id="msgs">
 	<div>hey</div>
 	<div>cool</div>
-
-
 </div>
-<form method="get">
 <input type="text" id="newMsg">
-<input type="hidden" name="something" value="whatever">
-<input type="submit" value="send" onclick="return addMessage();">
-</form>
+<!--
+<input type="button" value="send" onclick="addMessage();">
+-->
+<input type="button" value="send" id="send">
+
 <script src="script.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+	var socket = io();
+	$('#send').click(function(){
+		socket.emit('chat message', $('#newMsg').val());
+		$('#msgs').append($('<div>').append($('#newMsg').val()));  
+		$('#newMsg').val('');
+		return false;
+	});
+</script>
 </body>
 </html>
