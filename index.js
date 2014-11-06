@@ -49,10 +49,10 @@ io.on('connection', function(socket){
 	});
 	socket.on('chat message', function(msg){ //listening for event
 		console.log('message: ' + msg);
-		socket.broadcast.emit('chat message', {msg: msg, nick: socket.nickname});
+		io.emit('chat message', {msg: msg, nick: socket.nickname});
 		client.incr('msg_id', function(err, msg_id) {
 			console.log('msg_id', msg_id);
-			client.hset('history', msg_id, msg);
+			client.hset('history', msg_id,socket.nickname+":"+ msg);
 		});
 		//client.hset("history", "hashtest 1", "some value")
 		client.set('last message', msg);
