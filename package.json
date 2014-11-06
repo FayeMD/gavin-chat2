@@ -1,0 +1,10 @@
+{
+  "name": "gavin-chat2",
+  "version": "0.0.1",
+  "description": "my first socket.io app",
+  "dependencies": {
+    "express": "^4.10.1",
+    "redis": "^0.12.1",
+    "socket.io": "^1.2.0"
+  }
+}
