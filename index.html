@@ -1,24 +1,60 @@
+<!doctype html>
 <html>
 <head>
 <title>simple chat</title>
 </head>
 <link href="style.css" rel="stylesheet" type="text/css">
 <body>
+	<div id="nickWrap">
+		<p>Please provide a username</p>
+		<p id="nickError"></p>
+		<form id="setNick">
+			<input id="nickname"></input>
+			<input type="submit"></input>
+		</form>
+	</div>
+<div id="contentWrap">
+	<div id="chatWrap">
 <div id="msgs">
-	<div>hey</div>
-	<div>cool</div>
 </div>
 <input type="text" id="newMsg">
 <!--
 <input type="button" value="send" onclick="addMessage();">
 -->
 <input type="button" value="send" id="send">
-
+</div>
+<div id="users"></div>
+</div>
 <script src="script.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
 	var socket = io();
+	var $nickForm = $('#setNick');
+	var $nickError = $('#nickError');
+	var $nickBox = $('#nickname');
+	var $users = $('#users');
+
+	$nickForm.submit(function(e){
+		e.preventDefault();
+		socket.emit('new user', $nickBox.val(), function(data){
+			if(data){
+				$('#nickWrap').hide();
+				$('#contentWrap').show();
+			} else {
+				$nickError.html('That username is in use. Please try again!');
+			}
+		});
+		$nickBox.val('');
+	});
+
+	socket.on('usernames', function(data){
+		var html = '';
+		for(i=0; i < data.length; i++){
+			html += data[i] + '<br/>'
+		}
+		$users.html(html);
+	});
 	$('#send').click(function(){
 		socket.emit('chat message', $('#newMsg').val());
 		$('#msgs').append($('<div>').append($('#newMsg').val()));  
@@ -26,9 +62,9 @@
 		return false;
 	});
 	socket.on('chat message', function(msg){
-		$('#msgs').append($('<li>').text(msg));
+		//$('#msgs').append($('<li>').text(msg));
+		$chat.append('<b>' + msg.nick + ': </b>' + msg.msg + "<br/>");
 	});
-
 	socket.on('history', function(replies){
 		for (var i in replies) {
 			console.log("   " + i + ": " + replies[i]);
@@ -37,7 +73,6 @@
 			$('#msgs').append($('<div>').text(msg));
 		};
 	});
-
 </script>
 </body>
 </html>

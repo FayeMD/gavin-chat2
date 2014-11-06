@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var nicknames = [];
 
 var redis = require("redis"),
 		client = redis.createClient();
@@ -19,6 +20,21 @@ app.get('/', function(req, res){
 app.use("/style.css", express.static(__dirname + '/style.css'));
 
 io.on('connection', function(socket){
+	socket.on('new user', function(data, callback){
+		if (nicknames.indexOf(data) != -1){
+			callback(false);
+		} else{
+			callback(true);
+			socket.nickname = data;
+			nicknames.push(socket.nickname);
+			updateNicknames();
+		}
+	});
+
+	function updateNicknames(){
+		io.sockets.emit('usernames', nicknames);
+	}
+
 	client.get('app name', function(err, reply){
 		console.log('app name is', reply);
 	});
@@ -33,13 +49,19 @@ io.on('connection', function(socket){
 	});
 	socket.on('chat message', function(msg){ //listening for event
 		console.log('message: ' + msg);
-		socket.broadcast.emit('chat message', msg);
+		socket.broadcast.emit('chat message', {msg: msg, nick: socket.nickname});
 		client.incr('msg_id', function(err, msg_id) {
 			console.log('msg_id', msg_id);
 			client.hset('history', msg_id, msg);
 		});
 		//client.hset("history", "hashtest 1", "some value")
 		client.set('last message', msg);
+	});
+
+	socket.on('disconnect', function(data){
+		if(!socket.nickname) return;
+		nicknames.splice(nicknames.indexOf(socket.nickname), 1);
+		updateNicknames();
 	});
 });
 

@@ -3,11 +3,21 @@ body {
 }
 
 #msgs {
-	width: 30%;
 	background-color: yellow;
 }
 
 #newMsg {
-	width: 30%;
 	background-color: green;
+}
+
+#contentWrap {
+	display: none;
+}
+
+#chatWrap {
+	float: left;
+}
+
+#users {
+	float: right;
 }
