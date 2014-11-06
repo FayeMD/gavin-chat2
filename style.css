@@ -1,3 +1,13 @@
-#msgs {
+body {
 	background-color: purple;
+}
+
+#msgs {
+	width: 30%;
+	background-color: yellow;
+}
+
+#newMsg {
+	width: 30%;
+	background-color: green;
 }

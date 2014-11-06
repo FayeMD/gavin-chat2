@@ -1,4 +1,5 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
@@ -15,6 +16,8 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname + '/index.html');
 });
 
+app.use("/style.css", express.static(__dirname + '/style.css'));
+
 io.on('connection', function(socket){
 	client.get('app name', function(err, reply){
 		console.log('app name is', reply);
@@ -23,18 +26,7 @@ io.on('connection', function(socket){
 		console.log('history', replies);
 		socket.emit('history', replies);
 	});
-		/*
-	client.hkeys('history', function(err, replies) {
-		console.log('history', replies);
-		replies.forEach(function(reply, i) {
-			console.log("   " + i + reply, reply[i]);
-			client.hget('history', reply, function(err, msg) {
-				console.log('msg', msg);
-				socket.emit('history', msg);
-			});	
-		});
-	});
-*/
+
 	console.log('a user connected');
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
@@ -54,3 +46,4 @@ io.on('connection', function(socket){
 http.listen(3000, function(){
 	console.log('listening on *:3000');
 });
+
