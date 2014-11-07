@@ -52,7 +52,7 @@ io.on('connection', function(socket){
 		io.emit('chat message', {msg: msg, nick: socket.nickname});
 		client.incr('msg_id', function(err, msg_id) {
 			console.log('msg_id', msg_id);
-			client.hset('history', msg_id,socket.nickname+":"+ msg);
+			client.hset('history', msg_id,('<span>' + socket.nickname + ': </span>'+ msg));
 		});
 		//client.hset("history", "hashtest 1", "some value")
 		client.set('last message', msg);

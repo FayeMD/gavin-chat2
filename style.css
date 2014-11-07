@@ -4,6 +4,7 @@ body {
 
 #msgs {
 	background-color: yellow;
+	width: 50%;
 }
 
 #newMsg {
@@ -20,4 +21,8 @@ body {
 
 #users {
 	float: right;
+}
+
+#msgs div span{
+	font-weight:bold;
 }

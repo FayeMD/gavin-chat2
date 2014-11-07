@@ -71,7 +71,7 @@
 			console.log("   " + i + ": " + replies[i]);
 			var msg = replies[i];
 			//socket.emit('history', msg);
-			$('#msgs').append($('<div>').text(msg));
+			$('#msgs').append($('<div>').html(msg));
 		};
 	});
 </script>
