@@ -18,6 +18,10 @@ app.get('/', function(req, res){
 });
 
 app.use("/style.css", express.static(__dirname + '/style.css'));
+app.use("/keeprunning.jpg", express.static(__dirname + '/keeprunning.jpg'));
+app.use("/runner.jpg", express.static(__dirname + '/runner.jpg'));
+app.use("/neutral.jpg", express.static(__dirname + '/neutral.jpg'));
+app.use("/softblue.jpg", express.static(__dirname + '/softblue.jpg'));
 
 io.on('connection', function(socket){
 	socket.on('new user', function(data, callback){

@@ -4,7 +4,25 @@
 <title>simple chat</title>
 </head>
 <link href="style.css" rel="stylesheet" type="text/css">
-<body>
+<body><h1>
+	
+<div id="treat">
+     <a href="javascript:getTreat()"><center>One Step at a Time</center></a>
+   </div>
+   <div id="clickTreat">
+Little and often makes much.
+</div>
+
+<!-- <div id="intro">
+	Little and often makes much.
+</div>
+<div id="quote">
+     <a href="javascript:getQuote()">One Step at a Time</a>
+   </div>
+
+-->
+   </h1>
+
 	<div id="nickWrap">
 		<p>Please provide a username</p>
 		<p id="nickError"></p>
@@ -17,11 +35,13 @@
 	<div id="chatWrap">
 <div id="msgs">
 </div>
+<div id="inputBox">
 <input type="text" id="newMsg">
 <!--
 <input type="button" value="send" onclick="addMessage();">
 -->
 <input type="button" value="send" id="send">
+</div>
 </div>
 <div id="users"></div>
 </div>
@@ -75,5 +95,126 @@
 		};
 	});
 </script>
+<script type="text/javascript">
+function getTreat() {
+	var treats = new Array(
+		"In the practice of tolerance, one's enemy is the best teacher. -Dalai Lama",
+		"When you come to a roadblock, take a detour. -Mary Kay Ash",
+
+	"Happiness is not something ready made. It comes from your own actions. -Dalai Lama",
+
+"Turn your wounds into wisdom. -Oprah Winfrey",
+
+"The man who has no imagination has no wings. -Muhammad Ali",
+
+"At least once a day, allow yourself the freedom to think and dream for yourself. -Albert Einstein",
+
+"You can never cross the ocean until you have the courage to lose sight of the shore. -Christopher Columbus",
+
+"One good thing about music, when it hits you, you feel no pain. -Bob Marley",
+
+"We are what we repeatedly do. Excellence, then, is not an act, but a habbit. -Aristotle",
+
+"The purpose of our lives is to be happy. -Dalai Lama",
+
+"You can design and create, and build the most wonderful place in the world. But it takes people to make the dream a reality. -Walt Disney",
+
+"Your attitude, not your aptitude, will determine your altitude. -Zig Ziglar",
+
+"Quality means doing it right when no one is looking. -Henry Ford",
+
+"Error is only the opportunity to begin again, more intelligently. -Henry Ford",
+
+"None of us can go it alone. Support your team. -Robert H. Schuller",
+
+"I do not like to repeat successes, I like to go on to other things. -Walt Disney",
+
+"When everything seems to be going against you, remember that the airplane takes off against the wind, not with it. -Henry Ford",
+
+"All our dreams can come true if we have the courage to pursue them. -Walt Disney",
+
+"We can never obtain peace in the outer world until we make peace with ourselves. -Dalai Lama",
+
+"It takes as much energy to wish as it does to plan. -Eleanor Roosevelt"); 
+
+
+
+		
+var randomChoice = Math.floor(Math.random()* treats.length)
+ $("#clickTreat").html(treats[randomChoice]);
+ } 
+</script>
+<!--
+<script type="text/javascript">
+function getTreat() {
+	var treats = new Array(
+		
+	"In the practice of tolerance, one's enemy is the best teacher.<br>
+	By Dalai Lama",
+
+	"When you come to a roadblock, take a detour.<br>
+	By Mary Kay Ash",
+
+	"Happiness is not something ready made. It comes from your own actions. <br>
+	By Dalai Lama",
+
+"Turn your wounds into wisdom.<br>
+By Oprah Winfrey",
+
+"The man who has no imagination has no wings.<br>
+By Muhammad Ali",
+
+"At least once a day, allow yourself the freedom to think and dream for yourself.<br>
+By Albert Einstein",
+
+"You can never cross the ocean until you have the courage to lose sight of the shore.<br>
+By Christopher Columbus",
+
+"One good thing about music, when it hits you, you feel no pain.<br>
+By Bob Marley",
+
+"We are what we repeatedly do. Excellence, then, is not an act, but a habbit.<br>
+By Aristotle",
+
+"The purpose of our lives is to be happy.<br>
+By Dalai Lama",
+
+"You can design and create, and build the most wonderful place in the world. But it takes people to make the dream a reality.<br>
+By Walt Disney",
+
+"Your attitude, not your aptitude, will determine your altitude.<br>
+By Zig Ziglar",
+
+"Quality means doing it right when no one is looking.<br>
+By Henry Ford",
+
+"Error is only the opportunity to begin again, more intelligently.<br>
+By Henry Ford",
+
+"None of us can go it alone. Support your team.<br>
+By Robert H. Schuller",
+
+"I do not like to repeat successes, I like to go on to other things.<br>
+By Walt Disney",
+
+"When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.<br>
+By Henry Ford",
+
+"All our dreams can come true if we have the courage to pursue them.<br>
+By Walt Disney",
+
+"We can never obtain peace in the outer world until we make peace with ourselves.<br>
+By Dalai Lama",
+
+"It takes as much energy to wish as it does to plan.<br>
+By Eleanor Roosevelt"); 
+
+
+ 
+ var randomChoice = Math.floor(Math.random()* treats.length)
+ $("#clickTreat").html(treats[randomChoice]);
+ } 
+
+</script> -->
 </body>
 </html>

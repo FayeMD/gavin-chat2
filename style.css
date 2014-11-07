@@ -1,26 +1,85 @@
 body {
-	background-color: purple;
+	background-color: black;
+	background-image: url(keeprunning.jpg);
+	background-repeat: no-repeat;
+	height: 800px;
+	width: 1280px;
+}
+h1 {
+	font-family: Arial;
+	color: white;
+	background-image: url(runner.jpg);
+	width: 1278px;
+	margin-left: -6px;
+	height: 200px;
+	text-align: bottom;
 }
 
-#msgs {
-	background-color: yellow;
-	width: 50%;
+p {
+	font-family: Arial;
+	color: white;
+}
+
+#nickWrap {
+	color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#clickTreat {
+	font-family: Arial;
+	color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#treat {
+	background-color: #01DFD7;
+	width: 325px;
+	border-radius: 10px;
+	color: white;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+#msgs { 
+	font-family: Arial;
+	overflow-y:auto;
+	height: 750px;
+	background-image: url(neutral.jpg);
 }
 
 #newMsg {
-	background-color: green;
+	width: 94%;
+	background-color: whi;
+}
+
+#send {
+	width: 5%;
+}
+
+#inputBox {
+	width: 100%;
 }
 
 #contentWrap {
+	margin-top: -50px;
+	height: 700px;
 	display: none;
 }
 
 #chatWrap {
+	border: 2px solid black;
+	width: 999px;
 	float: left;
 }
 
 #users {
+	font-family: Arial;
+	height: 750px;
+	border: 2px solid black;
+	width: 270px;
+	text-align: left;
+	margin-left: -5px;
 	float: right;
+	overflow-y:auto;
+	background-image: url(softblue.jpg);
 }
 
 #msgs div span{
